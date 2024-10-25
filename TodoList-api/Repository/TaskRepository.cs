@@ -8,22 +8,37 @@ public class TaskRepository : ITaskRepository
 
     public IEnumerable<Task> GetTasks()
     {
-        throw new NotImplementedException();
+        return _context.Tasks;
     }
 
 
     public Task AddTask(Task task)
     {
-        throw new NotSupportedException();
+        _context.Tasks.Add(task);
+        _context.SaveChanges();
+        return task;
     }
 
-    public Task UpDateTask(Task task)
+    public Task UpDateTask(Task task, int taskId)
     {
-        throw new NotImplementedException();
+        var myTask = _context.Tasks.Find(taskId);
+        if (myTask != null)
+        {
+            myTask.Description = task.Description;
+            myTask.Done = task.Done;
+            _context.SaveChanges();
+        }
+
+        return myTask!;
     }
 
-    public Task DeleteTask(Task task)
+    public void DeleteTask(int taskId)
     {
-        throw new NotImplementedException();
+        var myTask = _context.Tasks.Find(taskId);
+        if (myTask != null)
+        {
+            _context.Tasks.Remove(myTask);
+            _context.SaveChanges();
+        }
     }
 }

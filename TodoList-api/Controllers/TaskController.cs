@@ -12,14 +12,27 @@ public class TaskController : ControllerBase
     }
 
     [HttpGet]
-    public IEnumerable<Task> GetTasks()
+    public IActionResult GetTasks()
     {
-        return _repository.GetTasks();
+        return Ok(_repository.GetTasks());
     }
 
     [HttpPost]
-    public Task PostTask([FromBody] Task task)
+    public IActionResult AddTask([FromBody] Task task)
     {
-        return task;
+        return Created("", _repository.AddTask(task));
+    }
+
+    [HttpPut("{taskId}")]
+    public IActionResult UpdateTask([FromBody] Task task, int taskId)
+    {
+        return Ok(_repository.UpDateTask(task, taskId));
+    }
+
+    [HttpDelete("{taskId}")]
+    public IActionResult DeleteTask(int taskId)
+    {
+        _repository.DeleteTask(taskId);
+        return NoContent();
     }
 }
