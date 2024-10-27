@@ -8,7 +8,7 @@ public class Task
     public string? Description { get; set; }
     public bool Done { get; set; }
     public DateTime Created_AT { get; set; } = DateTime.Now;
-    public DateTime Updated_AT { get; set; }
-    public DateTime Deleted_AT { get; set; }
+    public DateTime? Updated_AT { get; set; } = null;
+    public DateTime? Deleted_AT { get; set; } = null;
 
 }
