@@ -23,7 +23,7 @@ public class TaskController : ControllerBase
         return Created("", _repository.AddTask(task));
     }
 
-    [HttpPut("{taskId}")]
+    [HttpPost("{taskId}")]
     public IActionResult UpdateTask([FromBody] Task task, int taskId)
     {
         return Ok(_repository.UpDateTask(task, taskId));

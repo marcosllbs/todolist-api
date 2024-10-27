@@ -26,6 +26,7 @@ public class TaskRepository : ITaskRepository
         {
             myTask.Description = task.Description;
             myTask.Done = task.Done;
+            myTask.Updated_AT = DateTime.Now;
             _context.SaveChanges();
         }
 
@@ -37,7 +38,7 @@ public class TaskRepository : ITaskRepository
         var myTask = _context.Tasks.Find(taskId);
         if (myTask != null)
         {
-            _context.Tasks.Remove(myTask);
+            myTask.Deleted_AT = DateTime.Now;
             _context.SaveChanges();
         }
     }
