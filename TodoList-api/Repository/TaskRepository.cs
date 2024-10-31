@@ -8,7 +8,7 @@ public class TaskRepository : ITaskRepository
 
     public IEnumerable<Task> GetTasks()
     {
-        return _context.Tasks;
+        return _context.Tasks.Where(task => task.Deleted_AT == null);
     }
 
 
@@ -42,4 +42,5 @@ public class TaskRepository : ITaskRepository
             _context.SaveChanges();
         }
     }
+
 }
