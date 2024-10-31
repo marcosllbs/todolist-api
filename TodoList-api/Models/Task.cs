@@ -4,7 +4,7 @@ public class Task
 {
 
     [Key]
-    public int CityId { get; set; }
+    public int TaskId { get; set; }
     public string? Description { get; set; }
     public bool Done { get; set; }
     public DateTime Created_AT { get; set; } = DateTime.Now;
