@@ -23,20 +23,20 @@ public class TaskController : ControllerBase
         return Created("", _repository.AddTask(task));
     }
 
-    [HttpPut("{taskId}")]
+    [HttpPut("{taskId:int}")]
     public IActionResult UpdateTask([FromBody] Task task, int taskId)
     {
         return Ok(_repository.UpDateTask(task, taskId));
     }
 
-    [HttpDelete("{taskId}")]
+    [HttpDelete("{taskId:int}")]
     public IActionResult DeleteTask(int taskId)
     {
         _repository.DeleteTask(taskId);
         return NoContent();
     }
 
-    [HttpPut("{taskId}/finishtask")]
+    [HttpPut("{taskId:int}/finishtask")]
     public IActionResult FinishTask(int taskId)
     {
         return NoContent();
