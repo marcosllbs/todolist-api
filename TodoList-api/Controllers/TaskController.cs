@@ -28,7 +28,7 @@ public class TaskController : ControllerBase
     }
 
     [HttpPut("{taskId:int}")]
-    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public IActionResult UpdateTask([FromBody] Task task, int taskId)
     {
