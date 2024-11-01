@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 public class TaskRepository : ITaskRepository
 {
     protected readonly ITaskContext _context;
@@ -24,12 +25,20 @@ public class TaskRepository : ITaskRepository
         var myTask = _context.Tasks.Find(taskId);
         if (myTask != null)
         {
-            myTask.Description = task.Description;
-            myTask.Done = task.Done;
+            if (task.Description != null && myTask.Description != task.Description)
+            {
+                myTask.Description = task.Description;
+            }
+
+            if (myTask.Done != task.Done)
+            {
+                myTask.Done = task.Done;
+            }
+
             myTask.Updated_AT = DateTime.Now;
             _context.SaveChanges();
-        }
 
+        }
         return myTask!;
     }
 
