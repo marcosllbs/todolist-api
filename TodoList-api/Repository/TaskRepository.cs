@@ -16,6 +16,7 @@ public class TaskRepository : ITaskRepository
     public Task AddTask(Task task)
     {
         _context.Tasks.Add(task);
+        task.Done = false;
         _context.SaveChanges();
         return task;
     }
@@ -30,7 +31,7 @@ public class TaskRepository : ITaskRepository
                 myTask.Description = task.Description;
             }
 
-            if (myTask.Done != task.Done)
+            if (task.Done != null)
             {
                 myTask.Done = task.Done;
             }
