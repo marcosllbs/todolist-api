@@ -15,6 +15,6 @@ public class Task
     public DateTime Created_AT { get; set; } = DateTime.Now;
     public DateTime? Updated_AT { get; set; } = null;
     public DateTime? Deleted_AT { get; set; } = null;
-    public IEnumerable<SubTask>? SubTasks { get; set; }
+    public virtual ICollection<SubTask>? SubTasks { get; set; } = null;
 
 }

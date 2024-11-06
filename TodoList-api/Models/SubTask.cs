@@ -15,5 +15,4 @@ public class SubTask
     public DateTime? Deleted_AT { get; set; } = null;
     [ForeignKey("TaskId")]
     public int TaskId { get; set; }
-    public Task? Task { get; set; }
 }
