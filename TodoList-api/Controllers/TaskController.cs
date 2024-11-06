@@ -27,6 +27,14 @@ public class TaskController : ControllerBase
         return Created("", _repository.AddTask(task));
     }
 
+    [HttpPost("subtasks/{taskId:int}")]
+    [ProducesResponseType(typeof(Task), StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public IActionResult AddSubTask([FromBody] SubTask subTask, int taskId)
+    {
+        return Created("", _repository.AddSubTask(subTask, taskId));
+    }
+
     [HttpPut("{taskId:int}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -35,10 +43,27 @@ public class TaskController : ControllerBase
         return Ok(_repository.UpDateTask(task, taskId));
     }
 
+    [HttpPut("subtasks/{taskId:int}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public IActionResult UpdateSubTask([FromBody] SubTask subTask, int taskId)
+    {
+        return Ok(_repository.UpDateSubTask(subTask, taskId));
+    }
+
     [HttpDelete("{taskId:int}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public IActionResult DeleteTask(int taskId)
+    {
+        _repository.DeleteTask(taskId);
+        return NoContent();
+    }
+
+    [HttpDelete("subtasks/{taskId:int}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public IActionResult DeleteSubTask(int taskId)
     {
         _repository.DeleteTask(taskId);
         return NoContent();

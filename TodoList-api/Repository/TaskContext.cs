@@ -4,6 +4,7 @@ public class TaskContext : DbContext, ITaskContext
 {
     public TaskContext(DbContextOptions<TaskContext> options) : base(options) { }
     public DbSet<Task> Tasks { get; set; } = null!;
+    public DbSet<SubTask> SubTasks { get; set; } = null!;
     public TaskContext() { }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
