@@ -1,15 +1,16 @@
 services:
   db:
-    image: mcr.microsoft.com/azure-sql-edge:latest
+    image: mysql:8.0 # ou a versão do MySQL que preferir
     container_name: to_do_list_db
     ports:
-      - 1433:1433
+      - 3306:3306
     environment:
-      - ACCEPT_EULA=Y
-      - MSSQL_SA_PASSWORD=ToDoList1234@
-      - MSSQL_PID=Developer
+      - MYSQL_ROOT_PASSWORD=ToDoList1234@
+      - MYSQL_DATABASE=to_do_list_db
+      - MYSQL_USER=to_do_user
+      - MYSQL_PASSWORD=ToDoList1234@
     volumes:
-      - sql_data:/var/opt/mssql
+      - mysql_data:/var/lib/mysql
 
 volumes:
-  sql_data:
+  mysql_data:

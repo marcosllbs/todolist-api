@@ -32,7 +32,6 @@ public class TaskRepository : ITaskRepository
             subTask.TaskId = taskId;
             subTask.Created_AT = DateTime.Now;
 
-
             task.SubTasks?.Add(subTask);
 
 
