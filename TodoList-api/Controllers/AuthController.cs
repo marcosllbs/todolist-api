@@ -9,7 +9,7 @@ using System.Text;
 namespace ApiFuncional.Controllers
 {
     [ApiController]
-    [Route("api/conta")]
+    [Route("account")]
     public class AuthController : ControllerBase
     {
         private readonly SignInManager<IdentityUser> _signInManager;
@@ -26,6 +26,8 @@ namespace ApiFuncional.Controllers
         }
 
         [HttpPost("signUp")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult> SignUp(RegisterUserViewModel registerUser)
         {
             if (!ModelState.IsValid) return ValidationProblem(ModelState);
@@ -49,6 +51,8 @@ namespace ApiFuncional.Controllers
         }
 
         [HttpPost("login")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult> Login(LoginUserViewModel loginUser)
         {
             if (!ModelState.IsValid) return ValidationProblem(ModelState);
